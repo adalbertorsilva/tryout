@@ -1,0 +1,99 @@
+<div class="container">
+
+    <%= render 'cabecalho'%>
+
+    <a href="#_" class="mapa" id="mapa">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6887745522545!2d-48.37828688570463!3d-1.3633998360985808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a45f8da09f342f%3A0xf5946e8982fc6976!2sComplexo+Esportivo+Ant%C3%B4nio+Dan%C3%BAbio!5e0!3m2!1spt-BR!2sbr!4v1448699931756"  frameborder="0" allowfullscreen></iframe>
+    </a>
+
+    <div class="formulario">
+
+      <%= form_for @candidato, url:{action: 'create'} do |c| %>
+        <fieldset>
+          <legend>Formulário de Inscrição do Candidato</legend>
+
+          <p>
+            <%= c.label :nome, 'Nome*: ' %>
+            <%= c.text_field :nome %>
+          </p>
+
+          <p>
+            <div class="campos_alinhados">
+
+              <div class="campo">
+                <%= c.label :idade, 'Idade*: ' %>
+                <%= c.number_field :idade %>
+              </div>
+
+              <div class="campo">
+                <%= c.label :peso, 'Peso*: ' %>
+                <%= c.text_field :peso %>
+              </div>
+
+              <div class="campo">
+                <%= c.label :altura, 'Altura*: ' %>
+                <%= c.text_field :altura %>
+              </div>
+
+            </div><br><br>
+          </p>
+
+          <p>
+            <div class="radios">
+              <%= c.label :camisa, 'Tamanho de Camisa*: ' %>
+              <%= c.radio_button :camisa, 'P' %> P
+              <%= c.radio_button :camisa, 'M' %> M
+              <%= c.radio_button :camisa, 'G' %> G
+              <%= c.radio_button :camisa, 'GG' %> GG
+              <%= c.radio_button :camisa, 'EG' %> EG
+            </div>
+          </p>
+
+          <p>
+            <%= c.label :contato_emergencia, 'Contato de Emergência*: ' %>
+            <%= c.text_field :contato_emergencia %>
+          </p>
+
+          <p>
+            <%= c.label :email, 'E-mail*: ' %>
+            <%= c.email_field :email %>
+          </p>
+
+          <p>
+            <%= c.label :telefone, 'Telefone*:' %>
+            <%= c.number_field :telefone %>
+          </p>
+
+          <p>
+            <%= c.label :telefone_contato_emergencia, 'Telefone do contato de Emergência*:' %>
+            <%= c.number_field :telefone_contato_emergencia %><br>
+          </p>
+
+          <%= c.submit 'Cadastrar', class: 'botao' %>
+
+        </fieldset>
+      <% end %>
+
+    </div>
+
+    <div class="informacoes-adicionais">
+      <ul>
+
+        <li>
+            <p>
+              Local: Complexo Esportivo Antônio Danúnio;
+            </p>
+        </li>
+
+        <li>
+            <p>
+              Endereço: Rua João Canúto, 555 - Centro, Ananindeua - PA ( visualizar mapa <a href="#mapa" class="link">aqui</a>);
+            </p>
+        </li>
+      </ul>
+
+    </div>
+
+    <%= render 'rodape'%>
+
+</div>
