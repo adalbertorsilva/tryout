@@ -8,9 +8,11 @@ class CandidatosController < ApplicationController
     @candidato = Candidato.new(candidato_params)
     @candidato.pagamento_efetuado = false
 
-    @candidato.save
-
-    redirect_to action: :index
+    if @candidato.save
+      redirect_to action: :index
+    else
+      render action: :index
+    end
   end
 
   private
