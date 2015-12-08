@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205165428) do
+ActiveRecord::Schema.define(version: 20151207191311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "candidatos", force: :cascade do |t|
-    t.string   "fotografia"
     t.string   "nome"
     t.integer  "idade"
     t.decimal  "peso"
@@ -25,11 +24,15 @@ ActiveRecord::Schema.define(version: 20151205165428) do
     t.string   "camisa"
     t.string   "contato_emergencia"
     t.string   "email"
-    t.integer  "telefone"
-    t.integer  "telefone_contato_emergencia"
+    t.decimal  "telefone",                    precision: 11
+    t.decimal  "telefone_contato_emergencia", precision: 11
     t.boolean  "pagamento_efetuado"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "fotografia_file_name"
+    t.string   "fotografia_content_type"
+    t.integer  "fotografia_file_size"
+    t.datetime "fotografia_updated_at"
   end
 
 end

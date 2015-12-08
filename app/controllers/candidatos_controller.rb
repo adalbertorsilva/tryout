@@ -9,6 +9,7 @@ class CandidatosController < ApplicationController
     @candidato.pagamento_efetuado = false
 
     if @candidato.save
+      flash[:notice] = 'Inscrição efetuada com sucesso!'
       redirect_to action: :index
     else
       render action: :index

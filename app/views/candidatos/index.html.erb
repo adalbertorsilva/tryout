@@ -6,15 +6,15 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.6887745522545!2d-48.37828688570463!3d-1.3633998360985808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a45f8da09f342f%3A0xf5946e8982fc6976!2sComplexo+Esportivo+Ant%C3%B4nio+Dan%C3%BAbio!5e0!3m2!1spt-BR!2sbr!4v1448699931756"  frameborder="0" allowfullscreen></iframe>
     </a>
 
+    <p id="notice" class="mensagem-sucesso"><strong><%= notice %></strong></p>
+    <p class="mensagem-sucesso"><strong>Inscrição efetuada com sucesso!</strong></p>
     <div class="formulario">
-
-      <%= form_for @candidato, url:{action: 'create'} do |c| %>
-
+      <%= form_for @candidato, url:{action: 'create'}, html:{multipart: true} do |c| %>
         <% if @candidato.errors.any? %>
 
           <div id="error_explanation">
             <h2>
-              <%= pluralize(@candidato.errors.count, "erroS") %> impediram seu cadastro.
+              <%= pluralize(@candidato.errors.count, "erro").titleize %> impediram seu cadastro.
             </h2>
             <ul>
               <% @candidato.errors.full_messages.each do |msg| %>
@@ -22,11 +22,16 @@
               <% end %>
             </ul>
           </div>
-          
+
         <% end %>
 
         <fieldset>
           <legend>Formulário de Inscrição do Candidato</legend>
+
+          <p>
+            <%= c.label :fotografia, 'Fotografia*: ' %>
+            <%= c.file_field :fotografia %>
+          </p>
 
           <p>
             <%= c.label :nome, 'Nome*: ' %>

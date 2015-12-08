@@ -9,8 +9,8 @@ class CreateCandidatos < ActiveRecord::Migration
       t.string :camisa
       t.string :contato_emergencia
       t.string :email
-      t.integer :telefone
-      t.integer :telefone_contato_emergencia
+      t.decimal :telefone, precision: 11
+      t.decimal :telefone_contato_emergencia, precision: 11
       t.boolean :pagamento_efetuado
       t.timestamps null: false
     end
