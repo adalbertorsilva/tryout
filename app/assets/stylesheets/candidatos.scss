@@ -101,7 +101,7 @@ label{
 }
 
 .radios{
-  display: inline-block;
+  display: inline;
 }
 
 .radio{
@@ -144,7 +144,7 @@ label{
 	text-align: center;
 	top: 0;
 	left: 0;
-	background: rgba(0,0,0,0.8);
+	background: rgba(0,0,0,0.6);
 }
 
 .mapa iframe{
@@ -157,6 +157,8 @@ label{
 .mapa:target{
   outline: none;
   display: block;
+
+  transition: background 4s;
 }
 
 .link{
