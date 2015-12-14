@@ -19,6 +19,9 @@ gem 'coffee-rails', '~> 4.1.0'
 #gem para adicionar arquivos
 gem 'paperclip'
 
+#gem da biblioteca do pagseguro
+gem 'pagseguro-oficial'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
