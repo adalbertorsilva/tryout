@@ -1,6 +1,9 @@
 class CandidatosController < ApplicationController
   require 'base64'
 
+  skip_before_filter :verify_authenticity_token, only: :create_remote
+  skip_before_action :verify_authenticity_token, only: :create_remote
+
   def index
     @candidato = Candidato.new
   end
@@ -10,13 +13,24 @@ class CandidatosController < ApplicationController
     @candidato.pagamento_efetuado = false
 
     if @candidato.save
+      @candidato.update(foto: convert_file_to_base64(@candidato))
       CandidatosMailer.email_confirmacao_inscricao(@candidato).deliver_later
-      #convert_file_to_base64(@candidato)
       flash[:notice] = 'Inscrição efetuada com sucesso!'
-      redirect_to action: :index
+      render "sucesso.html.erb"
     else
       render action: :index
     end
+
+  end
+
+  def create_remote
+    @candidato = Candidato.new(candidato_params)
+    @candidato.save
+
+    unless @candidato.pagamento_efetuado
+      CandidatosMailer.email_confirmacao_inscricao(@candidato).deliver_later
+    end
+
   end
 
   private
@@ -26,7 +40,7 @@ class CandidatosController < ApplicationController
   end
 
   def convert_file_to_base64(candidato)
-    Base64.encode(File.open("public/system/candidatos/fotografias/000/000/013/original/nilson.jpeg", "rb").read)
+    Base64.encode64(open("public/candidatos/"+@candidato.id.to_s+"/"+@candidato.fotografia.original_filename, "rb").read)
   end
 
 end

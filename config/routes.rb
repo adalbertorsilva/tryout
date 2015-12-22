@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'candidatos#index'
 
   post 'candidatos/create' => 'candidatos#create'
+  post 'candidatos/mobile' => 'candidatos#create_remote'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
